@@ -1,0 +1,13 @@
+name: Extended_PvP
+version: '1.0.0'
+main: ooo.paulsen.mc.extended_pvp.Extended_PvP
+api-version: 1.19
+authors: [ Paulsen ]
+description: Extends the vanilla pvp expirience in a new way
+website: https://paulsen.ooo/
+
+commands:
+  epvp:
+    description: Open Settings for "Extended PvP"
+    usage: /<command>
+    permission: op
