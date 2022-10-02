@@ -1,7 +1,9 @@
 package ooo.paulsen.mc.extended_pvp;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
@@ -12,23 +14,24 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Extended_PvP extends JavaPlugin {
+
+    public static final Material[] defaultTable = {
+            Material.DIAMOND, Material.EMERALD, Material.GOLD_INGOT, Material.IRON_INGOT, Material.DIAMOND_BLOCK,
+            Material.EMERALD_BLOCK, Material.GOLD_BLOCK, Material.IRON_BLOCK
+    };
     public static Extended_PvP instance;
 
     public static Logger l;
 
     public static CopyOnWriteArrayList<Material> dropTable = new CopyOnWriteArrayList<>();
 
-    public static double killDropRate = 0.5D;
+    public static double killDropRate;
 
     public static boolean enabled = true;
 
     public void onEnable() {
         instance = this;
         l = getLogger();
-        dropTable.add(Material.DIAMOND);
-        dropTable.add(Material.IRON_INGOT);
-        dropTable.add(Material.GOLD_INGOT);
-        dropTable.add(Material.EMERALD);
         load();
 
 
@@ -60,9 +63,24 @@ public final class Extended_PvP extends JavaPlugin {
     public void load() {
         FileConfiguration config = getConfig();
 
-        // Defaults
-        config.addDefault("enabled", true);
-        config.addDefault("rate", 0.5f);
+        File configFile = new File(this.getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+
+            // Defaults
+            config.addDefault("enabled", true);
+            config.addDefault("rate", 0.5f);
+
+            ArrayList<String> temp = new ArrayList<>();
+            for (Material m : defaultTable)
+                temp.add(m.name());
+            config.addDefault("materials", temp);
+            dropTable.addAll(Arrays.asList(defaultTable));
+
+            config.options().copyDefaults(true);
+            saveConfig();
+            l.info("EPVP: No config found. Created a new one.");
+            return;
+        }
 
         enabled = config.getBoolean("enabled");
         try {
