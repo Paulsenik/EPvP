@@ -1,10 +1,12 @@
 name: Extended_PvP
-version: '1.0.0'
+version: '1.0.1'
 main: ooo.paulsen.mc.extended_pvp.Extended_PvP
 api-version: 1.19
 authors: [ Paulsen ]
 description: Extends the vanilla pvp expirience in a new way
 website: https://paulsen.ooo/
+libraries:
+  - org.bstats:bstats-bukkit:3.0.0
 
 commands:
   epvp:

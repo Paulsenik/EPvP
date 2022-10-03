@@ -3,6 +3,7 @@ package ooo.paulsen.mc.extended_pvp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
@@ -26,12 +27,16 @@ public class Listeners implements Listener {
         EntityDamageEvent damageEvent = player.getLastDamageCause();
         if (damageEvent == null)
             return;
-        if (player.getKiller() != null && player.getKiller() != player) {
+        if (player.getKiller() != null && player.getKiller() != player) { // is killed by other player
+
+            Extended_PvP.kills++;
+
             filterDrops(event.getDrops(), player);
             event.setKeepInventory(true);
             ItemStack skull = getPlayerSkull(player);
             if (skull != null)
                 event.getDrops().add(skull);
+
         } else {
             event.setKeepInventory(false);
         }
@@ -44,11 +49,11 @@ public class Listeners implements Listener {
         for (int i = 0; i < drops.size(); i++) {
             ItemStack s = drops.get(i);
             if (Extended_PvP.dropTable.contains(s.getType())) {
-                int amount = (int)(s.getAmount() * Extended_PvP.killDropRate);
+                int amount = (int) (s.getAmount() * Extended_PvP.killDropRate);
                 ItemStack newStack = s.clone();
                 newStack.setAmount(amount);
                 newDrops.add(newStack);
-                removeFromInventory((Inventory)victim.getInventory(), s.getType(), amount);
+                removeFromInventory((Inventory) victim.getInventory(), s.getType(), amount);
             }
         }
         drops.clear();
@@ -72,11 +77,11 @@ public class Listeners implements Listener {
     private static ItemStack getPlayerSkull(Player paramPlayer) {
         if (paramPlayer == null)
             return null;
-        ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1, (short)SkullType.PLAYER.ordinal());
-        SkullMeta meta = (SkullMeta)skull.getItemMeta();
+        ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1, (short) SkullType.PLAYER.ordinal());
+        SkullMeta meta = (SkullMeta) skull.getItemMeta();
         meta.setOwner(paramPlayer.getName());
         meta.setDisplayName(paramPlayer.getName());
-        skull.setItemMeta((ItemMeta)meta);
+        skull.setItemMeta((ItemMeta) meta);
         return skull;
     }
 }
