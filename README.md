@@ -10,6 +10,8 @@ Extends the Vanilla-Minecraft PvP expirience in a new way
 - The drop-**rate** specifies how much of the specified items a player loses to his killer. (e.g. 1.0 -> a player looses all his diamonds and ingots to his killer)
 - Player keeps all other personal items (e.g. Armor, Weapons, ...)
 
+[**Usage-Stats on bStats.org**](https://bstats.org/plugin/bukkit/Extended%20PvP/16563)
+
 ## Commands (OP):
 > /epvp : Helpmenu
 

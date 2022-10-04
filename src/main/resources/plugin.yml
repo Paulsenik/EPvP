@@ -1,5 +1,5 @@
 name: Extended PvP
-version: '1.0.0'
+version: '1.0.2'
 main: ooo.paulsen.mc.extended_pvp.Extended_PvP
 api-version: 1.19
 authors: [ Paulsen ]
