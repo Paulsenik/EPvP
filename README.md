@@ -25,6 +25,6 @@ Extends the Vanilla-Minecraft PvP expirience in a new way
 
 > /epvp table add [MATERIAL] : adds a material to the table
 
-> /epvp table remove [MATERIAL] : removes a from the table
+> /epvp table remove [MATERIAL] : removes a material from the table
 
 > /epvp table clear : clears the table

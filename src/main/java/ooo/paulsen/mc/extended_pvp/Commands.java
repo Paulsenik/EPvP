@@ -26,7 +26,7 @@ public class Commands implements CommandExecutor, TabCompleter {
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "rate [0.0-1.0] " + ChatColor.GRAY + ": sets the rate",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "table " + ChatColor.GRAY + ": lists the valuable-table",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "table add [MATERIAL] " + ChatColor.GRAY + ": adds a material to the table",
-                    ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "table remove [MATERIAL] " + ChatColor.GRAY + ": removes a from the table",
+                    ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "table remove [MATERIAL] " + ChatColor.GRAY + ": removes a material from the table",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "table clear " + ChatColor.GRAY + ": clears the table"
             };
             send(s, m);
