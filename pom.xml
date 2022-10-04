@@ -6,7 +6,7 @@
 
     <groupId>ooo.paulsen.mc</groupId>
     <artifactId>Extended_PvP</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>Extended_PvP</name>
