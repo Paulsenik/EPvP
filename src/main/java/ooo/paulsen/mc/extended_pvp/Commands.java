@@ -13,13 +13,13 @@ import org.bukkit.entity.Player;
 
 public class Commands implements CommandExecutor, TabCompleter {
 
-    private static String head = ChatColor.GOLD + "[" + ChatColor.UNDERLINE + ChatColor.LIGHT_PURPLE + "EPvP" + ChatColor.RESET + ChatColor.GOLD + "]: ";
-    private static final ChatColor usedColors[] = {ChatColor.GOLD, ChatColor.UNDERLINE, ChatColor.LIGHT_PURPLE, ChatColor.RESET, ChatColor.RED, ChatColor.GREEN};
+    public static final String head = ChatColor.GOLD + "[" + ChatColor.UNDERLINE + ChatColor.LIGHT_PURPLE + "EPvP" + ChatColor.RESET + ChatColor.GOLD + "]: ";
 
     public boolean onCommand(CommandSender s, Command command, String label, String[] args) {
         if (args.length == 0) {
             String m[] = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED" : ChatColor.RED + "DISABLED"),
-                    " /epvp " + ChatColor.GRAY + ": Helpmenu",
+                    ChatColor.WHITE +" /howto-epvp " + ChatColor.GRAY + ": HowTo-Book",
+                    ChatColor.WHITE +" /epvp " + ChatColor.GRAY + ": Helpmenu",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "enable",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "disable",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "rate " + ChatColor.GRAY + ": shows amount of an Itemtype that is dropped",

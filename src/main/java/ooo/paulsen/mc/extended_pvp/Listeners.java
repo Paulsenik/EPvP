@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
@@ -11,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,6 +23,17 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class Listeners implements Listener {
     private Logger l = Extended_PvP.l;
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        TextComponent t = new TextComponent("/howto-epvp");
+        t.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://github.com/realPaulsen/EPvP/wiki"));
+        t.setColor(ChatColor.LIGHT_PURPLE);
+        t.setUnderlined(true);
+        t.setBold(true);
+
+        event.getPlayer().spigot().sendMessage(new ComponentBuilder().append(Commands.head+"Read how to use ").append(t).create());
+    }
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {

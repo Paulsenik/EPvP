@@ -11,3 +11,6 @@ commands:
     description: Open Settings for "Extended PvP"
     usage: /<command>
     permission: op
+  howto-epvp:
+    description: Open Manual for "Extended PvP"
+    usage: /<command>
