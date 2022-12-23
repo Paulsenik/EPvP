@@ -15,8 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Extended_PvP extends JavaPlugin {
 
     public static final Material[] defaultTable = {
-            Material.DIAMOND, Material.EMERALD, Material.GOLD_INGOT, Material.IRON_INGOT, Material.DIAMOND_BLOCK,
-            Material.EMERALD_BLOCK, Material.GOLD_BLOCK, Material.IRON_BLOCK
+            Material.NETHER_STAR, Material.TURTLE_HELMET, Material.ENCHANTED_BOOK, Material.ENCHANTING_TABLE, Material.END_CRYSTAL, Material.TOTEM_OF_UNDYING,
+            Material.CROSSBOW, Material.BOW, Material.ELYTRA, Material.BEACON, Material.DRAGON_EGG, Material.DRAGON_HEAD, Material.DRAGON_WALL_HEAD, Material.NAME_TAG,
+            Material.EMERALD, Material.EMERALD_BLOCK,
+            Material.DIAMOND, Material.DIAMOND_BLOCK, Material.DIAMOND_AXE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_HORSE_ARMOR, Material.DIAMOND_HOE, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_HELMET, Material.DIAMOND_BOOTS, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL, Material.DIAMOND_SWORD,
+            Material.IRON_INGOT, Material.IRON_BLOCK, Material.IRON_AXE, Material.IRON_LEGGINGS, Material.IRON_HORSE_ARMOR, Material.IRON_HOE, Material.IRON_CHESTPLATE, Material.IRON_HELMET, Material.IRON_BOOTS, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.IRON_SWORD,
+            Material.GOLD_INGOT, Material.GOLD_BLOCK, Material.GOLDEN_AXE, Material.GOLDEN_LEGGINGS, Material.GOLDEN_HORSE_ARMOR, Material.GOLDEN_HOE, Material.GOLDEN_CHESTPLATE, Material.GOLDEN_HELMET, Material.GOLDEN_BOOTS, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL, Material.GOLDEN_SWORD, Material.GOLD_NUGGET, Material.GOLDEN_APPLE, Material.ENCHANTED_GOLDEN_APPLE,
+            Material.NETHERITE_BLOCK, Material.NETHERITE_SCRAP, Material.NETHERITE_INGOT, Material.NETHERITE_AXE, Material.NETHERITE_LEGGINGS, Material.ANCIENT_DEBRIS, Material.NETHERITE_HOE, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_HELMET, Material.NETHERITE_BOOTS, Material.NETHERITE_PICKAXE, Material.NETHERITE_SHOVEL, Material.NETHERITE_SWORD
     };
     public static Extended_PvP instance;
 
@@ -57,6 +62,9 @@ public final class Extended_PvP extends JavaPlugin {
             dropTableNames.add(m.name());
         }
         config.set("materials", dropTableNames);
+
+        // generates Tutorial-book new because of changed Plugin-Settings
+        HowTo.generateBook();
 
         config.options().copyDefaults(true);
         saveConfig();

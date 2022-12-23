@@ -26,13 +26,15 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        TextComponent t = new TextComponent("/howto-epvp");
-        t.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://github.com/realPaulsen/EPvP/wiki"));
-        t.setColor(ChatColor.LIGHT_PURPLE);
-        t.setUnderlined(true);
-        t.setBold(true);
+        if(Extended_PvP.enabled) {
+            TextComponent t = new TextComponent("/howto-epvp");
+            t.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/realPaulsen/EPvP"));
+            t.setColor(ChatColor.LIGHT_PURPLE);
+            t.setUnderlined(true);
+            t.setBold(true);
 
-        event.getPlayer().spigot().sendMessage(new ComponentBuilder().append(Commands.head+"Read how to use ").append(t).create());
+            event.getPlayer().spigot().sendMessage(new ComponentBuilder().append(Commands.head + "Read how to use ").append(t).create());
+        }
     }
 
     @EventHandler
