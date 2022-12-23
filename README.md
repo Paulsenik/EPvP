@@ -13,6 +13,8 @@ Extends the Vanilla-Minecraft PvP expirience in a new way
 [**Usage-Stats on bStats.org**](https://bstats.org/plugin/bukkit/Extended%20PvP/16563)
 
 ## Commands (OP):
+> /howto-epvp : Opens a how-to-book that expains the features
+
 > /epvp : Helpmenu
 
 > /epvp enable
