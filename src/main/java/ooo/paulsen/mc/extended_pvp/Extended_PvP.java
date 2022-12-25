@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
 import ooo.paulsen.mc.extended_pvp.bukkit.Metrics;
+import ooo.paulsen.mc.extended_pvp.test.TestCommands;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -43,6 +44,7 @@ public final class Extended_PvP extends JavaPlugin {
         getCommand("epvp").setExecutor(new Commands());
         getCommand("epvp").setTabCompleter(new Commands());
         getCommand("howto-epvp").setExecutor(new HowTo());
+        getCommand("playerkill").setExecutor(new TestCommands());
 
         bStats();
     }

@@ -13,12 +13,13 @@ import org.bukkit.entity.Player;
 
 public class Commands implements CommandExecutor, TabCompleter {
 
-    public static final String head = ChatColor.GOLD + "[" + ChatColor.UNDERLINE + ChatColor.LIGHT_PURPLE + "EPvP" + ChatColor.RESET + ChatColor.GOLD + "]: ";
+    public static final String head = ChatColor.GOLD + "[" + ChatColor.UNDERLINE + ChatColor.DARK_PURPLE + "EPvP" + ChatColor.RESET + ChatColor.GOLD + "]: ";
 
     public boolean onCommand(CommandSender s, Command command, String label, String[] args) {
         if (args.length == 0) {
             String m[] = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED" : ChatColor.RED + "DISABLED"),
                     ChatColor.WHITE +" /howto-epvp " + ChatColor.GRAY + ": HowTo-Book",
+                    ChatColor.WHITE +" /playerkill [player] " + ChatColor.GRAY + ": kill player and apply the keep-valuables for this death",
                     ChatColor.WHITE +" /epvp " + ChatColor.GRAY + ": Helpmenu",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "enable",
                     ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "disable",
