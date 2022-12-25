@@ -2,7 +2,6 @@ package ooo.paulsen.mc.extended_pvp;
 
 import java.io.File;
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
@@ -10,7 +9,6 @@ import ooo.paulsen.mc.extended_pvp.bukkit.Metrics;
 import ooo.paulsen.mc.extended_pvp.test.TestCommands;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Extended_PvP extends JavaPlugin {
@@ -18,7 +16,7 @@ public final class Extended_PvP extends JavaPlugin {
     public static final Material[] defaultTable = {
             Material.NETHER_STAR, Material.TURTLE_HELMET, Material.ENCHANTED_BOOK, Material.ENCHANTING_TABLE, Material.END_CRYSTAL, Material.TOTEM_OF_UNDYING,
             Material.CROSSBOW, Material.BOW, Material.ELYTRA, Material.BEACON, Material.DRAGON_EGG, Material.DRAGON_HEAD, Material.DRAGON_WALL_HEAD, Material.NAME_TAG,
-            Material.EMERALD, Material.EMERALD_BLOCK,
+            Material.EMERALD, Material.EMERALD_BLOCK, Material.PLAYER_HEAD, Material.PLAYER_WALL_HEAD,
             Material.DIAMOND, Material.DIAMOND_BLOCK, Material.DIAMOND_AXE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_HORSE_ARMOR, Material.DIAMOND_HOE, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_HELMET, Material.DIAMOND_BOOTS, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL, Material.DIAMOND_SWORD,
             Material.IRON_INGOT, Material.IRON_BLOCK, Material.IRON_AXE, Material.IRON_LEGGINGS, Material.IRON_HORSE_ARMOR, Material.IRON_HOE, Material.IRON_CHESTPLATE, Material.IRON_HELMET, Material.IRON_BOOTS, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.IRON_SWORD,
             Material.GOLD_INGOT, Material.GOLD_BLOCK, Material.GOLDEN_AXE, Material.GOLDEN_LEGGINGS, Material.GOLDEN_HORSE_ARMOR, Material.GOLDEN_HOE, Material.GOLDEN_CHESTPLATE, Material.GOLDEN_HELMET, Material.GOLDEN_BOOTS, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL, Material.GOLDEN_SWORD, Material.GOLD_NUGGET, Material.GOLDEN_APPLE, Material.ENCHANTED_GOLDEN_APPLE,
@@ -40,7 +38,7 @@ public final class Extended_PvP extends JavaPlugin {
         l = getLogger();
         load(); //config
 
-        getServer().getPluginManager().registerEvents(new Listeners(), (Plugin) this);
+        getServer().getPluginManager().registerEvents(new Listeners(), this);
         getCommand("epvp").setExecutor(new Commands());
         getCommand("epvp").setTabCompleter(new Commands());
         getCommand("howto-epvp").setExecutor(new HowTo());
@@ -56,8 +54,8 @@ public final class Extended_PvP extends JavaPlugin {
     public void save() {
         l.info("Saved");
         FileConfiguration config = getConfig();
-        config.set("enabled", Boolean.valueOf(enabled));
-        config.set("rate", Double.valueOf(killDropRate));
+        config.set("enabled", enabled);
+        config.set("rate", killDropRate);
 
         ArrayList<String> dropTableNames = new ArrayList<>();
         for (Material m : dropTable) {
@@ -103,12 +101,10 @@ public final class Extended_PvP extends JavaPlugin {
         }
 
         List<String> tempList = config.getStringList("materials");
-        if (tempList != null) {
-            dropTable.clear();
-            for (String materialName : tempList) {
-                if (materialName != null)
-                    dropTable.add(Material.valueOf(materialName));
-            }
+        dropTable.clear();
+        for (String materialName : tempList) {
+            if (materialName != null)
+                dropTable.add(Material.valueOf(materialName));
         }
     }
 
@@ -130,15 +126,12 @@ public final class Extended_PvP extends JavaPlugin {
         }));
 
         // Kills
-        metrics.addCustomChart(new Metrics.SingleLineChart("kills", new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                int tempKills = kills;
-                kills = 0;
-                if (tempKills > 0)
-                    l.info("[bStats] :: Sent " + tempKills + " kills.");
-                return tempKills;
-            }
+        metrics.addCustomChart(new Metrics.SingleLineChart("kills", () -> {
+            int tempKills = kills;
+            kills = 0;
+            if (tempKills > 0)
+                l.info("[bStats] :: Sent " + tempKills + " kills.");
+            return tempKills;
         }));
 
     }

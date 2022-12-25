@@ -17,7 +17,7 @@ public class Commands implements CommandExecutor, TabCompleter {
 
     public boolean onCommand(CommandSender s, Command command, String label, String[] args) {
         if (args.length == 0) {
-            String m[] = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED" : ChatColor.RED + "DISABLED"),
+            String[] m = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED" : ChatColor.RED + "DISABLED"),
                     ChatColor.WHITE +" /howto-epvp " + ChatColor.GRAY + ": HowTo-Book",
                     ChatColor.WHITE +" /playerkill [player] " + ChatColor.GRAY + ": kill player and apply the keep-valuables for this death",
                     ChatColor.WHITE +" /epvp " + ChatColor.GRAY + ": Helpmenu",
@@ -83,8 +83,6 @@ public class Commands implements CommandExecutor, TabCompleter {
                 try {
                     Material m = Material.valueOf(args[2]);
 
-                    if (m == null)
-                        return false;
                     if (Extended_PvP.dropTable.contains(m)) {
                         send(s, ChatColor.RED + "Material already contains " + m.name() + "!");
                     } else {
@@ -94,7 +92,7 @@ public class Commands implements CommandExecutor, TabCompleter {
                     }
 
                     return true;
-                } catch (IllegalArgumentException | NullPointerException e) {
+                } catch (IllegalArgumentException | NullPointerException e) { // wrong MaterialType
                     return false;
                 }
             }
@@ -115,16 +113,16 @@ public class Commands implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    public void send(CommandSender s, boolean doheader, String... message) {
+    public void send(CommandSender s, boolean doHeader, String... message) {
         if (s instanceof Player) {
 
-            s.sendMessage((doheader ? head : "") + message[0]);
+            s.sendMessage((doHeader ? head : "") + message[0]);
             for (int i = 1; i < message.length; i++)
                 s.sendMessage(message[i]);
 
         } else {
 
-            s.sendMessage(ChatColor.stripColor((doheader ? head : "") + message[0]));
+            s.sendMessage(ChatColor.stripColor((doHeader ? head : "") + message[0]));
             for (int i = 1; i < message.length; i++)
                 s.sendMessage(ChatColor.stripColor(message[i]));
 

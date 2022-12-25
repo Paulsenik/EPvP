@@ -36,18 +36,20 @@ public class HowTo implements CommandExecutor {
         howToBook = new ItemStack(Material.WRITTEN_BOOK);
         BookMeta bookMeta = (BookMeta) howToBook.getItemMeta();
 
-        bookMeta.setAuthor("Paulsen__");
-        bookMeta.setTitle("How2 ExtendedPvP");
-        bookMeta.setLore(Arrays.asList("This is a HowTo-Book", "of the usefulness of the", "Extended-PvP plugin!"));
-        bookMeta.setPages(getPages());
+        if(bookMeta != null) {
+            bookMeta.setAuthor("Paulsen__");
+            bookMeta.setTitle("How2 ExtendedPvP");
+            bookMeta.setLore(Arrays.asList("This is a HowTo-Book", "of the usefulness of the", "Extended-PvP plugin!"));
+            bookMeta.setPages(getPages());
 
-        howToBook.setItemMeta(bookMeta);
+            howToBook.setItemMeta(bookMeta);
+        }
     }
 
     private static ArrayList<String> getPages(){
         ArrayList<String> pages = new ArrayList<>();
 
-        // Mainpage
+        // MainPage
         pages.add("    " + ChatColor.LIGHT_PURPLE + ChatColor.UNDERLINE + "<Extended PvP>\n" + ChatColor.RESET +
                 ChatColor.GRAY+"      by Paulsen__\n"+ChatColor.RESET+
                 ChatColor.BLUE+ChatColor.BOLD+ChatColor.UNDERLINE+(Extended_PvP.enabled ? (ChatColor.GREEN+"        ENABLED") : (ChatColor.RED+"        DISABLED"))+"\n\n"+

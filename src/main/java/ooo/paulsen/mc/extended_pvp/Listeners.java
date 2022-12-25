@@ -2,7 +2,6 @@ package ooo.paulsen.mc.extended_pvp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -18,11 +17,9 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class Listeners implements Listener {
-    private Logger l = Extended_PvP.l;
     public static ArrayList<String> playerkillList = new ArrayList<>();
 
     @EventHandler
@@ -41,7 +38,7 @@ public class Listeners implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        if (player == null || !Extended_PvP.enabled)
+        if (!Extended_PvP.enabled)
             return;
 
         // OP-Player issued manual /playerkill
@@ -86,9 +83,7 @@ public class Listeners implements Listener {
             return;
 
         ArrayList<ItemStack> newDrops = new ArrayList<>();
-        for (int i = 0; i < drops.size(); i++) {
-            ItemStack s = drops.get(i);
-
+        for (ItemStack s : drops) {
             // items that are in droptable
             if (Extended_PvP.dropTable.contains(s.getType())) {
                 int amount = (int) (s.getAmount() * Extended_PvP.killDropRate);
@@ -129,11 +124,12 @@ public class Listeners implements Listener {
     private static ItemStack getPlayerSkull(Player paramPlayer) {
         if (paramPlayer == null)
             return null;
+
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
-        meta.setOwner(paramPlayer.getName());
+        meta.setOwningPlayer(paramPlayer);
         meta.setDisplayName(paramPlayer.getName());
-        skull.setItemMeta((ItemMeta) meta);
+        skull.setItemMeta(meta);
         return skull;
     }
 }
