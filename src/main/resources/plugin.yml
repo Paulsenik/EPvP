@@ -1,5 +1,5 @@
 name: EPvP
-version: '1.1.2'
+version: '1.2.0'
 main: de.paulsenik.mc.epvp.EPvP
 api-version: 1.19
 authors: [ Paulsenik ]
@@ -10,10 +10,6 @@ commands:
   epvp:
     description: Open Settings for "EPvP"
     usage: /<command> to open manual
-    permission: op
-  playerkill:
-    description: Tests the player-kill function
-    usage: /<command> to test the player-kill function
     permission: op
   howto-epvp:
     description: Open Manual for "EPvP"

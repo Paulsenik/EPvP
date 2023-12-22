@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
 
-public class HowToCommand implements CommandExecutor {
+public class HowToCommand extends CommandEssentials implements CommandExecutor {
 
   private static ItemStack howToBook;
 
