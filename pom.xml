@@ -6,7 +6,7 @@
 
   <groupId>de.paulsenik.mc</groupId>
   <artifactId>epvp</artifactId>
-  <version>1.2</version>
+  <version>1.2.0</version>
   <packaging>jar</packaging>
 
   <name>EPvP</name>

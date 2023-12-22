@@ -23,8 +23,6 @@ killed in any other way.***
 
 ## Commands (OP):
 
-> /playerkill [player] : kills player and applys the keep-valuables for this death
-
 > /epvp : Helpmenu
 
 > /epvp enable
