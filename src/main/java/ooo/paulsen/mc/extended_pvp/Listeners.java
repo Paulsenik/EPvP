@@ -28,27 +28,27 @@ public class Listeners implements Listener {
     if (Extended_PvP.enabled) {
       TextComponent t = new TextComponent("/howto-epvp");
       t.setClickEvent(
-          new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/realPaulsen/EPvP"));
+          new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/paulsenik/EPvP"));
       t.setColor(ChatColor.LIGHT_PURPLE);
       t.setUnderlined(true);
       t.setBold(true);
 
       event.getPlayer().spigot().sendMessage(
-          new ComponentBuilder().append(AdminCommand.head + "Read how to use ").append(t).create());
+          new ComponentBuilder().append(AdminCommand.head + "Try ").append(t).create());
     }
   }
 
   @EventHandler
   public void onDeath(PlayerDeathEvent event) {
     Player player = event.getEntity();
-      if (!Extended_PvP.enabled) {
-          return;
-      }
+    if (!Extended_PvP.enabled) {
+      return;
+    }
 
     EntityDamageEvent damageEvent = player.getLastDamageCause();
-      if (damageEvent == null) {
-          return;
-      }
+    if (damageEvent == null) {
+      return;
+    }
 
     if (player.getKiller() != null && player.getKiller() != player) { // is killed by other player
 
@@ -60,17 +60,17 @@ public class Listeners implements Listener {
 
       // adding Skull
       ItemStack skull = getPlayerSkull(player);
-        if (skull != null) {
-            event.getDrops().add(skull);
-        }
+      if (skull != null) {
+        event.getDrops().add(skull);
+      }
 
     }
   }
 
   private static void filterDrops(List<ItemStack> drops, Player victim) {
-      if (victim == null || drops == null) {
-          return;
-      }
+    if (victim == null || drops == null) {
+      return;
+    }
 
     ArrayList<ItemStack> newDrops = new ArrayList<>();
     for (ItemStack s : drops) {
@@ -106,17 +106,17 @@ public class Listeners implements Listener {
         int newAmount = Math.max(0, preAmount - amount);
         amount = Math.max(0, amount - preAmount);
         invItem.setAmount(newAmount);
-          if (amount == 0) {
-              break;
-          }
+        if (amount == 0) {
+          break;
+        }
       }
     }
   }
 
   private static ItemStack getPlayerSkull(Player paramPlayer) {
-      if (paramPlayer == null) {
-          return null;
-      }
+    if (paramPlayer == null) {
+      return null;
+    }
 
     ItemStack skull = new ItemStack(Material.PLAYER_HEAD, 1, (short) SkullType.PLAYER.ordinal());
     SkullMeta meta = (SkullMeta) skull.getItemMeta();

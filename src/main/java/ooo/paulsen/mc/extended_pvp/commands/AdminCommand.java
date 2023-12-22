@@ -22,8 +22,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
       String[] m = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED"
           : ChatColor.RED + "DISABLED"),
           ChatColor.WHITE + " /howto-epvp " + ChatColor.GRAY + ": HowTo-Book",
-          ChatColor.WHITE + " /playerkill [player] " + ChatColor.GRAY
-              + ": kill player and apply the keep-valuables for this death",
           ChatColor.WHITE + " /epvp " + ChatColor.GRAY + ": Helpmenu",
           ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "enable",
           ChatColor.GRAY + " /epvp " + ChatColor.WHITE + "disable",
@@ -129,16 +127,16 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
     if (s instanceof Player) {
 
       s.sendMessage((doHeader ? head : "") + message[0]);
-        for (int i = 1; i < message.length; i++) {
-            s.sendMessage(message[i]);
-        }
+      for (int i = 1; i < message.length; i++) {
+        s.sendMessage(message[i]);
+      }
 
     } else {
 
       s.sendMessage(ChatColor.stripColor((doHeader ? head : "") + message[0]));
-        for (int i = 1; i < message.length; i++) {
-            s.sendMessage(ChatColor.stripColor(message[i]));
-        }
+      for (int i = 1; i < message.length; i++) {
+        s.sendMessage(ChatColor.stripColor(message[i]));
+      }
 
     }
   }
@@ -168,13 +166,13 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
       } else if (args.length == 3) {
         if (args[0].equalsIgnoreCase("table")) {
           if (args[1].equalsIgnoreCase("add")) {
-              for (Material m : Material.values()) {
-                  list.add(m.toString());
-              }
+            for (Material m : Material.values()) {
+              list.add(m.toString());
+            }
           } else if (args[1].equalsIgnoreCase("remove")) {
-              for (Material m : Extended_PvP.dropTable) {
-                  list.add(m.toString());
-              }
+            for (Material m : Extended_PvP.dropTable) {
+              list.add(m.toString());
+            }
           }
 
         }
@@ -188,9 +186,9 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
   private static List<String> filter(List<String> l, String arg) {
     ArrayList<String> nL = new ArrayList<>();
     for (String s : l) {
-        if (s.toLowerCase().contains(arg.toLowerCase())) {
-            nL.add(s);
-        }
+      if (s.toLowerCase().contains(arg.toLowerCase())) {
+        nL.add(s);
+      }
     }
     return nL;
   }

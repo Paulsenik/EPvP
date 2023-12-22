@@ -53,26 +53,25 @@ public class HowToCommand implements CommandExecutor {
 
     // MainPage
     pages.add(
-        "    " + ChatColor.LIGHT_PURPLE + ChatColor.UNDERLINE + "<Extended PvP>\n" + ChatColor.RESET
-            +
-            ChatColor.GRAY + "      by Paulsen__\n" + ChatColor.RESET +
-            ChatColor.BLUE + ChatColor.BOLD + ChatColor.UNDERLINE + (Extended_PvP.enabled ? (
-            ChatColor.GREEN + "        ENABLED") : (ChatColor.RED + "        DISABLED")) + "\n\n" +
+        "    " + (Extended_PvP.enabled ?
+            ChatColor.GREEN : ChatColor.RED) + ChatColor.UNDERLINE + "<Extended PvP>\n"
+            + ChatColor.RESET + ChatColor.GRAY + "      by Paulsen__\n" + ChatColor.RESET +
+            "\n" +
             ChatColor.BLUE + ChatColor.BOLD + ChatColor.UNDERLINE + "Features:\n\n"
             + ChatColor.RESET +
             ChatColor.BLACK + "- " + ChatColor.GOLD + "Collect heads" + ChatColor.RESET
             + " of other players by killing them.\n\n" +
             "- " + ChatColor.GOLD + "Keep valuables" + ChatColor.RESET
-            + " after getting killed by another player (e.g. armor, weapons)");
+            + " after losing a player-duel (e.g. armor, weapons)");
 
-    pages.add(ChatColor.RESET + "After being " + ChatColor.UNDERLINE + "killed by a Player"
-        + ChatColor.RESET
-        + ", all items are dropped, except of a few other items which are set by the Admin.\n\n\n" +
-        ChatColor.BLUE + ChatColor.BOLD + ChatColor.UNDERLINE + "Settings:\n\n" +
+    pages.add("" + ChatColor.BLUE + ChatColor.BOLD + ChatColor.UNDERLINE + "Settings:\n\n" +
         ChatColor.RESET + "- You keep " + ChatColor.GOLD + ChatColor.UNDERLINE + (100d
         - Extended_PvP.killDropRate * 100) + "%" + ChatColor.RESET + " of the "
         + ChatColor.UNDERLINE + "valuables.\n\n" +
-        ChatColor.RESET + "- Valuable-List:\n");
+        ChatColor.RESET + "- Valuables saved: " + ChatColor.GOLD
+        + ChatColor.UNDERLINE + Extended_PvP.dropTable.size() + "\n\n" +
+        ChatColor.RESET + "- All valuables listed on the next " + ChatColor.UNDERLINE + "pages"
+        + ChatColor.RESET + "...");
 
     pages.addAll(printTable());
 
