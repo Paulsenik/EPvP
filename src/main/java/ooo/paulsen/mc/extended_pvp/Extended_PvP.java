@@ -58,8 +58,9 @@ public final class Extended_PvP extends JavaPlugin {
     load(); //config
 
     getServer().getPluginManager().registerEvents(new Listeners(), this);
-    getCommand("epvp").setExecutor(new AdminCommand());
-    getCommand("epvp").setTabCompleter(new AdminCommand());
+    AdminCommand adminCommand = new AdminCommand();
+    getCommand("epvp").setExecutor(adminCommand);
+    getCommand("epvp").setTabCompleter(adminCommand);
     getCommand("howto-epvp").setExecutor(new HowToCommand());
 
     bStats();
@@ -99,9 +100,9 @@ public final class Extended_PvP extends JavaPlugin {
       config.addDefault("rate", 0.5f);
 
       ArrayList<String> temp = new ArrayList<>();
-        for (Material m : defaultTable) {
-            temp.add(m.name());
-        }
+      for (Material m : defaultTable) {
+        temp.add(m.name());
+      }
       config.addDefault("materials", temp);
       dropTable.addAll(Arrays.asList(defaultTable));
 
@@ -122,9 +123,9 @@ public final class Extended_PvP extends JavaPlugin {
     List<String> tempList = config.getStringList("materials");
     dropTable.clear();
     for (String materialName : tempList) {
-        if (materialName != null) {
-            dropTable.add(Material.valueOf(materialName));
-        }
+      if (materialName != null) {
+        dropTable.add(Material.valueOf(materialName));
+      }
     }
   }
 
@@ -150,9 +151,9 @@ public final class Extended_PvP extends JavaPlugin {
     metrics.addCustomChart(new Metrics.SingleLineChart("kills", () -> {
       int tempKills = kills;
       kills = 0;
-        if (tempKills > 0) {
-            l.info("[bStats] :: Sent " + tempKills + " kills.");
-        }
+      if (tempKills > 0) {
+        l.info("[bStats] :: Sent " + tempKills + " kills.");
+      }
       return tempKills;
     }));
 

@@ -1,6 +1,7 @@
 package ooo.paulsen.mc.extended_pvp.commands;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import ooo.paulsen.mc.extended_pvp.Extended_PvP;
 import org.bukkit.ChatColor;
@@ -89,7 +90,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
         args[0].equalsIgnoreCase("table")) {
       if (args[1].equalsIgnoreCase("add")) {
         try {
-          Material m = Material.valueOf(args[2]);
+          Material m = Material.valueOf(args[2].toUpperCase());
 
           if (Extended_PvP.dropTable.contains(m)) {
             send(s, ChatColor.RED + "Material already contains " + m.name() + "!");
@@ -107,7 +108,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
       }
       if (args[1].equalsIgnoreCase("remove")) {
         try {
-          if (Extended_PvP.dropTable.remove(Material.valueOf(args[2]))) {
+          if (Extended_PvP.dropTable.remove(Material.valueOf(args[2].toUpperCase()))) {
             Extended_PvP.instance.save();
             send(s, ChatColor.GREEN + "Removed " + ChatColor.GOLD + ChatColor.UNDERLINE + args[2]
                 + ChatColor.RESET + ChatColor.GREEN + " from table.");
@@ -166,7 +167,8 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
       } else if (args.length == 3) {
         if (args[0].equalsIgnoreCase("table")) {
           if (args[1].equalsIgnoreCase("add")) {
-            for (Material m : Material.values()) {
+            for (Material m : Arrays.stream(Material.values())
+                .filter(m -> !Extended_PvP.dropTable.contains(m)).toList()) {
               list.add(m.toString());
             }
           } else if (args[1].equalsIgnoreCase("remove")) {
