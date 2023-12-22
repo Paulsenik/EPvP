@@ -1,9 +1,9 @@
-package ooo.paulsen.mc.extended_pvp.commands;
+package de.paulsenik.mc.epvp.commands;
 
+import de.paulsenik.mc.epvp.EPvP;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import ooo.paulsen.mc.extended_pvp.Extended_PvP;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -20,7 +20,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 
   public boolean onCommand(CommandSender s, Command command, String label, String[] args) {
     if (args.length == 0) {
-      String[] m = {ChatColor.UNDERLINE + (Extended_PvP.enabled ? ChatColor.GREEN + "ENABLED"
+      String[] m = {ChatColor.UNDERLINE + (EPvP.enabled ? ChatColor.GREEN + "ENABLED"
           : ChatColor.RED + "DISABLED"),
           ChatColor.WHITE + " /howto-epvp " + ChatColor.GRAY + ": HowTo-Book",
           ChatColor.WHITE + " /epvp " + ChatColor.GRAY + ": Helpmenu",
@@ -44,24 +44,24 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
     }
     if (args.length == 1) {
       if (args[0].equalsIgnoreCase("enable")) {
-        Extended_PvP.enabled = true;
-        Extended_PvP.instance.save();
+        EPvP.enabled = true;
+        EPvP.instance.save();
         send(s, "" + ChatColor.GREEN + ChatColor.UNDERLINE + "ENABLED");
         return true;
       } else if (args[0].equalsIgnoreCase("disable")) {
-        Extended_PvP.enabled = false;
-        Extended_PvP.instance.save();
+        EPvP.enabled = false;
+        EPvP.instance.save();
         send(s, "" + ChatColor.RED + ChatColor.UNDERLINE + "DISABLED");
         return true;
       } else if (args[0].equalsIgnoreCase("rate")) {
-        send(s, ChatColor.WHITE + "Drop-Rate: " + ChatColor.GOLD + Extended_PvP.killDropRate);
+        send(s, ChatColor.WHITE + "Drop-Rate: " + ChatColor.GOLD + EPvP.killDropRate);
         return true;
       } else if (args[0].equalsIgnoreCase("table")) {
         send(s, "Table:");
-        if (Extended_PvP.dropTable.isEmpty()) {
+        if (EPvP.dropTable.isEmpty()) {
           send(s, false, ChatColor.GRAY + " <empty>");
         } else {
-          for (Material m : (List<Material>) Extended_PvP.dropTable.clone()) {
+          for (Material m : (List<Material>) EPvP.dropTable.clone()) {
             send(s, false, ChatColor.GOLD + " " + m.name());
           }
         }
@@ -70,17 +70,17 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
     } else if (args.length == 2) {
       if (args[0].equalsIgnoreCase("table")) {
         if (args[1].equalsIgnoreCase("clear")) {
-          Extended_PvP.dropTable.clear();
-          Extended_PvP.instance.save();
+          EPvP.dropTable.clear();
+          EPvP.instance.save();
           send(s, ChatColor.GREEN + "Drop-Table cleared!");
           return true;
         }
       } else if (args[0].equalsIgnoreCase("rate")) {
         try {
           double value = Double.parseDouble(args[1]);
-          Extended_PvP.killDropRate = Math.min(Math.max(value, 0.0D), 1.0D);
-          Extended_PvP.instance.save();
-          send(s, ChatColor.WHITE + "Drop-Rate: " + ChatColor.GOLD + Extended_PvP.killDropRate);
+          EPvP.killDropRate = Math.min(Math.max(value, 0.0D), 1.0D);
+          EPvP.instance.save();
+          send(s, ChatColor.WHITE + "Drop-Rate: " + ChatColor.GOLD + EPvP.killDropRate);
           return true;
         } catch (NumberFormatException e) {
           return false;
@@ -92,11 +92,11 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
         try {
           Material m = Material.valueOf(args[2].toUpperCase());
 
-          if (Extended_PvP.dropTable.contains(m)) {
+          if (EPvP.dropTable.contains(m)) {
             send(s, ChatColor.RED + "Material already contains " + m.name() + "!");
           } else {
-            Extended_PvP.dropTable.add(m);
-            Extended_PvP.instance.save();
+            EPvP.dropTable.add(m);
+            EPvP.instance.save();
             send(s, ChatColor.GREEN + "Added " + ChatColor.GOLD + ChatColor.UNDERLINE + args[2]
                 + ChatColor.RESET + ChatColor.GREEN + " to table.");
           }
@@ -108,8 +108,8 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
       }
       if (args[1].equalsIgnoreCase("remove")) {
         try {
-          if (Extended_PvP.dropTable.remove(Material.valueOf(args[2].toUpperCase()))) {
-            Extended_PvP.instance.save();
+          if (EPvP.dropTable.remove(Material.valueOf(args[2].toUpperCase()))) {
+            EPvP.instance.save();
             send(s, ChatColor.GREEN + "Removed " + ChatColor.GOLD + ChatColor.UNDERLINE + args[2]
                 + ChatColor.RESET + ChatColor.GREEN + " from table.");
           } else {
@@ -162,17 +162,17 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
           list.add("remove");
           list.add("clear");
         } else if (args[0].equalsIgnoreCase("rate")) {
-          list.add(String.valueOf(Extended_PvP.killDropRate));
+          list.add(String.valueOf(EPvP.killDropRate));
         }
       } else if (args.length == 3) {
         if (args[0].equalsIgnoreCase("table")) {
           if (args[1].equalsIgnoreCase("add")) {
             for (Material m : Arrays.stream(Material.values())
-                .filter(m -> !Extended_PvP.dropTable.contains(m)).toList()) {
+                .filter(m -> !EPvP.dropTable.contains(m)).toList()) {
               list.add(m.toString());
             }
           } else if (args[1].equalsIgnoreCase("remove")) {
-            for (Material m : Extended_PvP.dropTable) {
+            for (Material m : EPvP.dropTable) {
               list.add(m.toString());
             }
           }

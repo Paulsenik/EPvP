@@ -1,12 +1,12 @@
-package ooo.paulsen.mc.extended_pvp;
+package de.paulsenik.mc.epvp;
 
+import de.paulsenik.mc.epvp.commands.AdminCommand;
 import java.util.ArrayList;
 import java.util.List;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
-import ooo.paulsen.mc.extended_pvp.commands.AdminCommand;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
@@ -25,7 +25,7 @@ public class Listeners implements Listener {
 
   @EventHandler
   public void onJoin(PlayerJoinEvent event) {
-    if (Extended_PvP.enabled) {
+    if (EPvP.enabled) {
       TextComponent t = new TextComponent("/howto-epvp");
       t.setClickEvent(
           new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/paulsenik/EPvP"));
@@ -41,7 +41,7 @@ public class Listeners implements Listener {
   @EventHandler
   public void onDeath(PlayerDeathEvent event) {
     Player player = event.getEntity();
-    if (!Extended_PvP.enabled) {
+    if (!EPvP.enabled) {
       return;
     }
 
@@ -52,7 +52,7 @@ public class Listeners implements Listener {
 
     if (player.getKiller() != null && player.getKiller() != player) { // is killed by other player
 
-      Extended_PvP.kills++;
+      EPvP.kills++;
 
       // filtering items
       filterDrops(event.getDrops(), player);
@@ -75,8 +75,8 @@ public class Listeners implements Listener {
     ArrayList<ItemStack> newDrops = new ArrayList<>();
     for (ItemStack s : drops) {
       // items that are in droptable
-      if (Extended_PvP.dropTable.contains(s.getType())) {
-        int amount = (int) (s.getAmount() * Extended_PvP.killDropRate);
+      if (EPvP.dropTable.contains(s.getType())) {
+        int amount = (int) (s.getAmount() * EPvP.killDropRate);
         ItemStack newStack = s.clone();
         newStack.setAmount(amount);
         newDrops.add(newStack);

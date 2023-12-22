@@ -1,5 +1,8 @@
-package ooo.paulsen.mc.extended_pvp;
+package de.paulsenik.mc.epvp;
 
+import de.paulsenik.mc.epvp.bukkit.Metrics;
+import de.paulsenik.mc.epvp.commands.AdminCommand;
+import de.paulsenik.mc.epvp.commands.HowToCommand;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,14 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
-import ooo.paulsen.mc.extended_pvp.bukkit.Metrics;
-import ooo.paulsen.mc.extended_pvp.commands.AdminCommand;
-import ooo.paulsen.mc.extended_pvp.commands.HowToCommand;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Extended_PvP extends JavaPlugin {
+public final class EPvP extends JavaPlugin {
 
   public static final Material[] defaultTable = {
       Material.NETHER_STAR, Material.TURTLE_HELMET, Material.ENCHANTED_BOOK,
@@ -41,7 +41,7 @@ public final class Extended_PvP extends JavaPlugin {
       Material.NETHERITE_BOOTS, Material.NETHERITE_PICKAXE, Material.NETHERITE_SHOVEL,
       Material.NETHERITE_SWORD
   };
-  public static Extended_PvP instance;
+  public static EPvP instance;
 
   public static Logger l;
 
@@ -130,7 +130,7 @@ public final class Extended_PvP extends JavaPlugin {
   }
 
   private void bStats() {
-    int pluginId = 16563;
+    int pluginId = 20537;
     Metrics metrics = new Metrics(this, pluginId);
 
     // Enabled/Disabled

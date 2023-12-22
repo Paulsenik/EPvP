@@ -1,16 +1,21 @@
 # EPvP
-Extends the Vanilla-Minecraft PvP expirience in a new way
+
+Extends the Vanilla-Minecraft PvP experience in a new way
 
 ## Features:
-***Only apply when a player is killed by another one!!***
-***Not when dying "normal"***
-- Playerhead of victim is dropped.
+
+***The following features only apply when a player is killed by another one and do not work when
+killed in any other way.***
+
+- Player head of victim is dropped.
 - Victim keeps most of the items after death.
-- Some of the "valueables" (e.g. diamonds, ingots, ...) are dropped according to a **table**, which is set with commands.
-- The drop-**rate** specifies how much of the specified items a player loses to his killer. (e.g. 1.0 -> a player looses all his diamonds and ingots to his killer)
+- Some of the "valueables" (e.g. diamonds, ingots, ...) are dropped according to a **table**, which
+  is set with commands.
+- The drop-**rate** specifies how much of the specified items a player loses to his killer. (e.g.
+  1.0 -> a player looses all his diamonds and ingots to his killer)
 - Player keeps all other personal items (e.g. Armor, Weapons, ...)
 
-[**Usage-Stats on bStats.org**](https://bstats.org/plugin/bukkit/Extended%20PvP/16563)
+[**Usage-Stats on bStats.org**](https://bstats.org/plugin/bukkit/EPvP/20537)
 
 ## Commands (*):
 
