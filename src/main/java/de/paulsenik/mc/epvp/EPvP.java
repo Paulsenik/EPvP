@@ -18,28 +18,58 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class EPvP extends JavaPlugin {
 
   public static final Material[] defaultTable = {
-      Material.NETHER_STAR, Material.TURTLE_HELMET, Material.ENCHANTED_BOOK,
-      Material.ENCHANTING_TABLE, Material.END_CRYSTAL, Material.TOTEM_OF_UNDYING,
-      Material.CROSSBOW, Material.BOW, Material.ELYTRA, Material.BEACON, Material.DRAGON_EGG,
-      Material.DRAGON_HEAD, Material.DRAGON_WALL_HEAD, Material.NAME_TAG,
-      Material.EMERALD, Material.EMERALD_BLOCK, Material.PLAYER_HEAD, Material.PLAYER_WALL_HEAD,
-      Material.DIAMOND, Material.DIAMOND_BLOCK, Material.DIAMOND_AXE, Material.DIAMOND_LEGGINGS,
-      Material.DIAMOND_HORSE_ARMOR, Material.DIAMOND_HOE, Material.DIAMOND_CHESTPLATE,
-      Material.DIAMOND_HELMET, Material.DIAMOND_BOOTS, Material.DIAMOND_PICKAXE,
-      Material.DIAMOND_SHOVEL, Material.DIAMOND_SWORD,
-      Material.IRON_INGOT, Material.IRON_BLOCK, Material.IRON_AXE, Material.IRON_LEGGINGS,
-      Material.IRON_HORSE_ARMOR, Material.IRON_HOE, Material.IRON_CHESTPLATE, Material.IRON_HELMET,
-      Material.IRON_BOOTS, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.IRON_SWORD,
-      Material.GOLD_INGOT, Material.GOLD_BLOCK, Material.GOLDEN_AXE, Material.GOLDEN_LEGGINGS,
-      Material.GOLDEN_HORSE_ARMOR, Material.GOLDEN_HOE, Material.GOLDEN_CHESTPLATE,
-      Material.GOLDEN_HELMET, Material.GOLDEN_BOOTS, Material.GOLDEN_PICKAXE,
-      Material.GOLDEN_SHOVEL, Material.GOLDEN_SWORD, Material.GOLD_NUGGET, Material.GOLDEN_APPLE,
-      Material.ENCHANTED_GOLDEN_APPLE,
+      // Metals & Minerals
+      Material.LAPIS_LAZULI, Material.LAPIS_BLOCK,
+      Material.IRON_NUGGET, Material.RAW_IRON, Material.IRON_INGOT, Material.IRON_BLOCK,
+      Material.RAW_IRON_BLOCK,
+      Material.RAW_GOLD, Material.GOLD_INGOT, Material.GOLD_BLOCK, Material.RAW_GOLD_BLOCK,
+      Material.GOLD_NUGGET,
+      Material.DIAMOND, Material.DIAMOND_BLOCK,
+      Material.EMERALD, Material.EMERALD_BLOCK,
       Material.NETHERITE_BLOCK, Material.NETHERITE_SCRAP, Material.NETHERITE_INGOT,
-      Material.NETHERITE_AXE, Material.NETHERITE_LEGGINGS, Material.ANCIENT_DEBRIS,
-      Material.NETHERITE_HOE, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_HELMET,
-      Material.NETHERITE_BOOTS, Material.NETHERITE_PICKAXE, Material.NETHERITE_SHOVEL,
-      Material.NETHERITE_SWORD
+
+      //Ores
+      Material.LAPIS_ORE, Material.DEEPSLATE_LAPIS_ORE,
+      Material.DEEPSLATE_IRON_ORE, Material.IRON_ORE,
+      Material.GOLD_ORE, Material.NETHER_GOLD_ORE, Material.DEEPSLATE_GOLD_ORE,
+      Material.DIAMOND_ORE, Material.DEEPSLATE_DIAMOND_ORE,
+      Material.EMERALD_ORE, Material.DEEPSLATE_EMERALD_ORE,
+      Material.ANCIENT_DEBRIS,
+
+      // Armor
+      Material.DIAMOND_LEGGINGS, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_HELMET,
+      Material.DIAMOND_BOOTS, Material.DIAMOND_HORSE_ARMOR,
+      Material.IRON_LEGGINGS, Material.IRON_CHESTPLATE, Material.IRON_HELMET, Material.IRON_BOOTS,
+      Material.IRON_HORSE_ARMOR,
+      Material.GOLDEN_LEGGINGS, Material.GOLDEN_CHESTPLATE, Material.GOLDEN_HELMET,
+      Material.GOLDEN_BOOTS, Material.GOLDEN_HORSE_ARMOR,
+      Material.NETHERITE_LEGGINGS, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_HELMET,
+      Material.NETHERITE_BOOTS,
+      Material.LEATHER_HORSE_ARMOR,
+      Material.TURTLE_HELMET,
+
+      // Combat
+      Material.SHIELD, Material.TRIDENT, Material.CROSSBOW, Material.BOW,
+      Material.NETHERITE_SWORD, Material.DIAMOND_SWORD, Material.GOLDEN_SWORD, Material.IRON_SWORD,
+
+      // Tools
+      Material.NETHERITE_AXE, Material.NETHERITE_HOE, Material.NETHERITE_PICKAXE,
+      Material.NETHERITE_SHOVEL,
+      Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL,
+      Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE,
+      Material.GOLDEN_SHOVEL,
+      Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL,
+
+      // Whahabohle
+      Material.POTION, Material.LINGERING_POTION, Material.SPLASH_POTION,
+      Material.EXPERIENCE_BOTTLE,
+
+      // Valuables
+      Material.NETHER_STAR, Material.ENCHANTED_BOOK, Material.ENCHANTING_TABLE,
+      Material.END_CRYSTAL, Material.TOTEM_OF_UNDYING, Material.ELYTRA, Material.BEACON,
+      Material.DRAGON_EGG, Material.DRAGON_HEAD, Material.WITHER_SKELETON_SKULL,
+      Material.PLAYER_HEAD, Material.GOLDEN_APPLE, Material.ENCHANTED_GOLDEN_APPLE,
+      Material.NAME_TAG, Material.FIREWORK_ROCKET, Material.FIREWORK_STAR
   };
   public static EPvP instance;
 
